@@ -1,30 +1,32 @@
 <script lang="ts">
     import { onMount, onDestroy } from 'svelte';
+    import { measurementMode } from '$lib/stores.js';
     import { browser } from '$app/environment'
     
     let location: string = '';
     let apiKey: string = '';
     let weatherData: any = null;
     let errorMessage: string = 'cow';
+    $: unit = '°C';
   
     async function fetchWeather() 
     {
-      try 
-      {
-        console.log(`Fetching weather data for ${location} with API key ${apiKey}`);
-        const response = await fetch(`https://api.openweathermap.org/data/2.5/weather?q=${location}&appid=${apiKey}&units=metric`);
-        if (!response.ok) 
+        try 
         {
-          throw new Error('Unable to fetch weather data:\n' + response.statusText);
+            const response = await fetch(`https://api.openweathermap.org/data/2.5/weather?q=${location}&appid=${apiKey}&units=${$measurementMode}`);
+            if (!response.ok) 
+            {
+            throw new Error('Unable to fetch weather data:\n' + response.statusText);
+            }
+            const data = await response.json();
+            console.log(data)
+            weatherData = data;
+            errorMessage = '';
+            unit = getMeasurementUnit();
+        } catch (error) {
+            errorMessage = error.message;
+            weatherData = null;
         }
-        const data = await response.json();
-        console.log(data)
-        weatherData = data;
-        errorMessage = '';
-      } catch (error) {
-        errorMessage = error.message;
-        weatherData = null;
-      }
     }
   
     async function submitForm(event: Event) 
@@ -37,12 +39,29 @@
         localStorage.setItem('apiKey', apiKey);
       }
     }
+
+    function getMeasurementUnit() 
+    {
+        if($measurementMode === 'metric') {
+            return '°C';
+        }
+        if($measurementMode === 'imperial') {
+            return '°F';
+        }
+        if($measurementMode === 'kelvin') {
+            return 'K';
+        }
+        return '°C';
+    }
   
     onMount( ()=> 
     {
         location = browser && localStorage.getItem('selectedLocation') || 'Cairo';
         apiKey = browser && localStorage.getItem('apiKey') || '';
         fetchWeather();
+        measurementMode.subscribe(() => {
+            fetchWeather();
+        })
     });
   
     onDestroy(() => {
@@ -58,7 +77,7 @@
             <h2>Weather in {weatherData.name}</h2>
             <p>{weatherData.weather[0].description}</p>
             ----
-            <p>Temperature: {weatherData.main.temp}°C - FL: {weatherData.main.feels_like}°C</p>
+            <p>Temperature: {weatherData.main.temp}{unit} - FL: {weatherData.main.feels_like}{unit}</p>
             <p>Humidity: {weatherData.main.humidity}</p>
             <p>Wind: {weatherData.wind.speed}m/h -- {weatherData.wind.deg}°</p>
             <p>Visibility: {weatherData.visibility} meters</p>

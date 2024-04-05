@@ -1,12 +1,25 @@
-<script>
+<script lang="ts">
     import SearchBar from '$lib/components/search-bar.svelte';
     import ImageAscii from '$lib/components/image-ascii.svelte';
     import Timezones from '$lib/components/timezones.svelte';
     import WeatherCard from '$lib/components/weather-card.svelte';
+    import Settings from '$lib/components/settings.svelte';
+    import { rainbowMode, backgroundImg, textColor, fontType } from '$lib/stores.js';
+    let img = '';
+    let txtColor = 'white';
+
+    backgroundImg.subscribe((value) => {
+      img = value;
+      console.log(img)
+    })
+    textColor.subscribe((value) => {
+      txtColor = value;
+      console.log(txtColor)
+    })
 </script>
 
-
-<div class="grid-container">
+<Settings />
+<div class="grid-container" style="background-image: url({$backgroundImg}); color: {txtColor}; font-family: {$fontType};" class:rainbow-mode={$rainbowMode} class:rainbow-text={$rainbowMode}>
     <div class="image grid-item"><ImageAscii /></div>
     <div class="search-bar grid-item"><SearchBar /></div>
     <div class="grid-item item-border"><WeatherCard /></div>
@@ -15,30 +28,32 @@
 
 
 <style>
+    @import url('https://fonts.googleapis.com/css2?family=Reddit+Mono:wght@200..900&display=swap');
+    @import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@300..700&family=Reddit+Mono:wght@200..900&display=swap');
     :global(body) {
     background-color: black;
     color: white;
     }
+    
 
     .grid-container {
       display: grid;
-      grid-template-columns: 1fr 1fr; /* Two equal-width columns */
-      grid-template-rows: auto auto; /* Two auto-height rows */
-      justify-items: center; /* Center content horizontally */
-      align-content: center; /* Center content vertically */
-      gap: 1rem; /* Gap between grid items */
+      grid-template-columns: 1fr 1fr;
+      grid-template-rows: auto auto;
+      justify-items: center;
+      align-content: center;
+      gap: 1rem;
     }
 
     .image {
-      grid-column: 1 / span 2; /* Span two columns */
+      grid-column: 1 / span 2;
     }
 
     .search-bar {
-      grid-column: 1 / span 2; /* Span two columns */
+      grid-column: 1 / span 2;
     }
 
     .grid-item {
-      /* Your item styles here */
       text-align: center;
     }
 
@@ -46,4 +61,18 @@
         border: 1px solid white;
         padding: 1rem;
     }
+    @keyframes rainbow {
+        0% { color: rgb(0, 174, 255); }
+        20% { color: white; }
+        60% { color: pink; }
+        100% { color: rgb(0, 174, 255); }
+    }
+
+    .rainbow-text {
+        animation: rainbow 12s infinite;
+    }
+
+    .rainbow-mode .rainbow-text {
+        animation: rainbow 12s infinite;
+  }
 </style>
