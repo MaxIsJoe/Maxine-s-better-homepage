@@ -1,38 +1,16 @@
-# create-svelte
+# Maxine's better homepage
 
-Everything you need to build a Svelte project, powered by [`create-svelte`](https://github.com/sveltejs/kit/tree/main/packages/create-svelte).
+I got bored of my homepage on firefox, so I made my own after not finding any alternative that I personally liked.
 
-## Creating a project
-
-If you're seeing this, you've probably already done this step. Congrats!
-
+## Running
+after you cloned this project, run:
 ```bash
-# create a new project in the current directory
-npm create svelte@latest
-
-# create a new project in my-app
-npm create svelte@latest my-app
-```
-
-## Developing
-
-Once you've created a project and installed dependencies with `npm install` (or `pnpm install` or `yarn`), start a development server:
-
-```bash
-npm run dev
-
-# or start the server and open the app in a new browser tab
+npm install
 npm run dev -- --open
 ```
 
-## Building
+## Contributing
 
-To create a production version of your app:
+This project is currently developed based on the assumption that only I will be using it. If you are using the [instance that is hosted on vercel](https://maxine-homepage.vercel.app/), and would like to add new features for it; please consider writing a proposal before opening a PR.
 
-```bash
-npm run build
-```
-
-You can preview the production build with `npm run preview`.
-
-> To deploy your app, you may need to install an [adapter](https://kit.svelte.dev/docs/adapters) for your target environment.
+If you want this project to continue being developed, consider [supporting me finanically](www.maxisjoe.xyz/maxfund). 
