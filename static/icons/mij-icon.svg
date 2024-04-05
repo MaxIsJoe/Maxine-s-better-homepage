@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   width="42.837692mm"
+   height="42.767967mm"
+   viewBox="0 0 42.837692 42.767967"
+   version="1.1"
+   id="svg1"
+   inkscape:version="1.3 (0e150ed6c4, 2023-07-21)"
+   sodipodi:docname="mij-icon.svg"
+   inkscape:export-filename="Documents\mij-icon.svg"
+   inkscape:export-xdpi="96"
+   inkscape:export-ydpi="96"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <sodipodi:namedview
+     id="namedview1"
+     pagecolor="#505050"
+     bordercolor="#eeeeee"
+     borderopacity="1"
+     inkscape:showpageshadow="0"
+     inkscape:pageopacity="0"
+     inkscape:pagecheckerboard="0"
+     inkscape:deskcolor="#505050"
+     inkscape:document-units="mm"
+     inkscape:zoom="5.9366442"
+     inkscape:cx="402.66856"
+     inkscape:cy="599.24427"
+     inkscape:window-width="1920"
+     inkscape:window-height="1009"
+     inkscape:window-x="-8"
+     inkscape:window-y="-8"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="layer1" />
+  <defs
+     id="defs1">
+    <rect
+       x="92.981827"
+       y="420.43954"
+       width="237.17102"
+       height="243.90884"
+       id="rect1" />
+  </defs>
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1"
+     transform="translate(-82.804956,-137.66174)">
+    <text
+       xml:space="preserve"
+       transform="matrix(0.26458333,0,0,0.26458333,56.690276,14.97479)"
+       id="text1"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:192px;font-family:'Urdu Typesetting';-inkscape-font-specification:'Urdu Typesetting';white-space:pre;shape-inside:url(#rect1);display:inline;fill:#c83737"><tspan
+         x="92.982422"
+         y="581.63593"
+         id="tspan3">M</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:46.7127px;font-family:'Urdu Typesetting';-inkscape-font-specification:'Urdu Typesetting';fill:#a02c2c;stroke-width:0.243295"
+       x="106.12834"
+       y="155.50969"
+       id="text2"
+       transform="scale(0.91954217,1.0874977)"><tspan
+         sodipodi:role="line"
+         id="tspan2"
+         style="fill:#a02c2c;stroke-width:0.243295"
+         x="106.12834"
+         y="155.50969">J</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:51.123px;font-family:'Urdu Typesetting';-inkscape-font-specification:'Urdu Typesetting';fill:#c83737;stroke-width:0.266265"
+       x="-113.65149"
+       y="167.00702"
+       id="text2-1"
+       transform="scale(-0.98523585,1.0149854)"><tspan
+         id="tspan2-7"
+         style="stroke-width:0.266265"
+         x="-113.65149"
+         y="167.00702"
+         sodipodi:role="line">J</tspan></text>
+  </g>
+</svg>
