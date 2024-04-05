@@ -2,6 +2,9 @@
 
 I got bored of my homepage on firefox, so I made my own after not finding any alternative that I personally liked.
 
+![image](https://github.com/MaxIsJoe/Maxine-s-better-homepage/assets/34368774/3337cd08-3f61-47f0-bb06-323439e4c6f4)
+
+
 ## Running
 after you cloned this project, run:
 ```bash
