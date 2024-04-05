@@ -18,6 +18,17 @@
     })
 </script>
 
+<head>
+  <meta name="title" content="Maxine's Better Homepage">
+  <meta name="description" content="A homepage created after I got bored of my current one on firefox, and me not finding a better alternative.">
+  <meta name="keywords" content="homepage, search, world-clock, weather">
+  <meta name="robots" content="index, follow">
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <meta name="language" content="English">
+  <meta name="author" content="MaxIsJoe">
+  <title>Maxine's Better Homepage</title>
+</head>
+
 <Settings />
 <div class="grid-container" style="background-image: url({$backgroundImg}); color: {txtColor}; font-family: {$fontType};" class:rainbow-mode={$rainbowMode} class:rainbow-text={$rainbowMode}>
     <div class="image grid-item"><ImageAscii /></div>
