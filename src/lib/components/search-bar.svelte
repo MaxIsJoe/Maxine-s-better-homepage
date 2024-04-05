@@ -41,7 +41,7 @@
   <button class="dropdown-btn"><img src="{selectedEngine.icon}" width="16px" height="16px" alt="search"></button>
   <div class="dropdown-content">
     {#each engines as engine}
-        <button on:mousedown={() => selectEngine(engine)}>
+        <button class="dropdown-item" on:mousedown={() => selectEngine(engine)}>
           <img src="{engine.icon}" width="16px" height="16px" alt="{engine.id}"> - {engine.id}
         </button>
     {/each}
@@ -74,12 +74,14 @@
   }
 
   .dropdown-content {
-    display: none;
+    display: grid;
     position: absolute;
     background-color: #181818;
     min-width: 160px;
     box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
     z-index: 1;
+    scale: 0;
+    transition: scale 0.3s ease
   }
 
   .dropdown-content button {
@@ -94,6 +96,7 @@
   }
 
   .dropdown-btn:focus + .dropdown-content {
-    display: block;
+    scale: 1;
+    transition: scale 0.3s ease;
   }
 </style>
