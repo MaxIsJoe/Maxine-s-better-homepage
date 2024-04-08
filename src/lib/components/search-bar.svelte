@@ -52,7 +52,7 @@
 
 <style>
   .search-bar{
-    min-width: 275px;
+    min-width: 400px;
   }
 
   .search-container {
