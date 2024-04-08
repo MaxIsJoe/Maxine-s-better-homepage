@@ -1,7 +1,21 @@
 <script>
-    import { rainbowMode, toggleRainbowMode, 
-        measurementMode, toggleMeasurementMode, setBackgroundImg, setTextColor, setFontType } from '$lib/stores.js';
+    import { rainbowMode, toggleRainbowMode, toggleMeasurementMode, setBackgroundImg,
+        setTextColor, setFontType, toggleCardBlurMode, textColor, 
+        blurryCardMode, setblurryCardBgColorBottom, setblurryCardBgColorTop, blurryCardBgColorTop, blurryCardBgColorBot } from '$lib/stores.js';
+    import { onMount, setContext } from 'svelte';
+    import ColorPicker, { A11yVariant } from 'svelte-awesome-color-picker';
+
     let sidebarOpen = false;
+	let hexFont
+	let hexTop
+	let hexBot
+
+    onMount(() => 
+    {
+        hexFont = $textColor
+        hexTop = $blurryCardBgColorTop
+        hexBot = $blurryCardBgColorBot
+    });
 
     const fonts = [
         'Arial',
@@ -26,13 +40,11 @@
     function settingsRainbowMode() 
     {
         toggleRainbowMode();
-        console.log($rainbowMode)
     }
 
     function updateMeasurementMode(event) 
     {
         toggleMeasurementMode(event.target.value);
-        console.log("settings change" + $measurementMode)
     }
 
     function handleImageUpload(event) 
@@ -54,14 +66,30 @@
         setBackgroundImg('');
     }
 
-    function selectColor(color)
+    function selectFontColor(color)
     {
-        setTextColor(color.target.value);
+        setTextColor(color.detail.hex);
     }
 
     function selectFont(font)
     {
         setFontType(font.target.value);
+    }
+    function changeBlurryCardMode(mode)
+    {
+        toggleCardBlurMode()
+    }
+
+    function setBackgroundBlurColor(color, top)
+    {
+        if(top)
+        {
+            setblurryCardBgColorTop(color.detail.hex)
+        }
+        else
+        {
+            setblurryCardBgColorBottom(color.detail.hex)
+        }
     }
 </script>
 
@@ -84,8 +112,12 @@
             <button on:click={clearBackgroundImg}>Clear Background Image</button>
         </div>
         <div>
-            <label for="select-color">Select Text Color:</label>
-            <input type="color" on:input={change => selectColor(change)}>
+            <ColorPicker components={A11yVariant} label="Choose Font Color" bind:hex={hexFont} isDark={true} on:input={(change) => {selectFontColor(change)}} a11yColors={[
+                { textHex: '#FFF', reverse: true, placeholder: 'background' },
+                { textHex: '#FFF', bgHex: '#FF0000', reverse: true, placeholder: 'background' },
+                { bgHex: '#FFF', placeholder: 'title', size: 'large' },
+                { bgHex: '#7F7F7F', placeholder: 'button' }
+            ]} />
         </div>
         <div>
             <label for="select-font">Select Font:</label>
@@ -95,6 +127,26 @@
                 {/each}
             </select>
         </div>
+        <div>
+            <label for="blurry-card-setting">Blur background for cards:</label>
+            <input type="checkbox" id="blurry-card-setting" on:change={changeBlurryCardMode} bind:checked={$blurryCardMode}>
+        </div>
+        {#if blurryCardMode}
+        <div>
+            <ColorPicker components={A11yVariant} label="Choose Top Background Color" bind:hex={hexTop} isDark={true} on:input={(change) => {setBackgroundBlurColor(change, true)}} a11yColors={[
+                { textHex: '#FFF', reverse: true, placeholder: 'background' },
+                { textHex: '#FFF', bgHex: '#FF0000', reverse: true, placeholder: 'background' },
+                { bgHex: '#FFF', placeholder: 'title', size: 'large' },
+                { bgHex: '#7F7F7F', placeholder: 'button' }
+            ]} />
+            <ColorPicker components={A11yVariant} label="Choose Bottom Background Color" bind:hex={hexBot} isDark={true} on:input={(change) => {setBackgroundBlurColor(change, false)}} a11yColors={[
+                { textHex: '#FFF', reverse: true, placeholder: 'background' },
+                { textHex: '#FFF', bgHex: '#FF0000', reverse: true, placeholder: 'background' },
+                { bgHex: '#FFF', placeholder: 'title', size: 'large' },
+                { bgHex: '#7F7F7F', placeholder: 'button' }
+            ]} />
+        </div>
+        {/if}
     </div>
     <div class="{`main-content ${sidebarOpen ? 'sidebar-open' : ''}`}">
         <button class="toggle-button" on:click={toggleSidebar}>
@@ -135,6 +187,12 @@
         right: -40px;
         cursor: pointer;
         z-index: 999;
+    }
+
+    .dark {
+		--cp-bg-color: #333;
+		--cp-input-color: #555;
+		--cp-button-hover-color: #777;
     }
 </style>
 
