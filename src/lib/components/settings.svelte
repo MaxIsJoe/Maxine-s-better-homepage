@@ -95,58 +95,73 @@
 
 <div class="settings-container">
     <div class="{`sidebar ${sidebarOpen ? 'open' : ''}`}">
-        <button on:click={settingsRainbowMode}>
-            {$rainbowMode ? "Disable Rainbow Mode" : "Enable Rainbow Mode"}
-        </button>
         <div>
-            <label for="temperatureUnit">Temperature Unit:</label>
-            <select id="temperatureUnit" on:change={updateMeasurementMode}>
-                <option value="metric">Metric</option>
-                <option value="imperial">Imperial</option>
-                <option value="kelvin">Kelvin</option>
-            </select>
+            <h3>Background Settings</h3>
+            <div>
+                <label for="background-image-set">Background Image:</label>
+                <input type="file" accept="image/*" on:change={handleImageUpload}>
+                <button on:click={clearBackgroundImg}>Clear Background Image</button>
+            </div>
+            <div>
+                <label for="blurry-card-setting">Blur background for cards:</label>
+                <input type="checkbox" id="blurry-card-setting" on:change={changeBlurryCardMode} bind:checked={$blurryCardMode}>
+            </div>
+            {#if $blurryCardMode}
+            <div>
+                <ColorPicker components={A11yVariant} label="Choose Top Background Color" bind:hex={hexTop} isDark={true} on:input={(change) => {setBackgroundBlurColor(change, true)}} a11yColors={[
+                    { textHex: '#FFF', reverse: true, placeholder: 'background' },
+                    { textHex: '#FFF', bgHex: '#FF0000', reverse: true, placeholder: 'background' },
+                    { bgHex: '#FFF', placeholder: 'title', size: 'large' },
+                    { bgHex: '#7F7F7F', placeholder: 'button' }
+                ]} />
+                <ColorPicker components={A11yVariant} label="Choose Bottom Background Color" bind:hex={hexBot} isDark={true} on:input={(change) => {setBackgroundBlurColor(change, false)}} a11yColors={[
+                    { textHex: '#FFF', reverse: true, placeholder: 'background' },
+                    { textHex: '#FFF', bgHex: '#FF0000', reverse: true, placeholder: 'background' },
+                    { bgHex: '#FFF', placeholder: 'title', size: 'large' },
+                    { bgHex: '#7F7F7F', placeholder: 'button' }
+                ]} />
+            </div>
+            {/if}
         </div>
+        <hr>
         <div>
-            <label for="background-image-set">Background Image:</label>
-            <input type="file" accept="image/*" on:change={handleImageUpload}>
-            <button on:click={clearBackgroundImg}>Clear Background Image</button>
+            <h3>Text Settings</h3>
+            <div>
+                <label for="select-font">Select Font:</label>
+                <select id="select-font" on:change={selectFont}>
+                    {#each fonts as font}
+                        <option value="{font}"><div style="font-family: {font};">{font}</div></option>
+                    {/each}
+                </select>
+            </div>
+            <div>
+                <ColorPicker components={A11yVariant} label="Choose Font Color" bind:hex={hexFont} isDark={true} on:input={(change) => {selectFontColor(change)}} a11yColors={[
+                    { textHex: '#FFF', reverse: true, placeholder: 'background' },
+                    { textHex: '#FFF', bgHex: '#FF0000', reverse: true, placeholder: 'background' },
+                    { bgHex: '#FFF', placeholder: 'title', size: 'large' },
+                    { bgHex: '#7F7F7F', placeholder: 'button' }
+                ]} />
+            </div>
         </div>
+        <hr>
         <div>
-            <ColorPicker components={A11yVariant} label="Choose Font Color" bind:hex={hexFont} isDark={true} on:input={(change) => {selectFontColor(change)}} a11yColors={[
-                { textHex: '#FFF', reverse: true, placeholder: 'background' },
-                { textHex: '#FFF', bgHex: '#FF0000', reverse: true, placeholder: 'background' },
-                { bgHex: '#FFF', placeholder: 'title', size: 'large' },
-                { bgHex: '#7F7F7F', placeholder: 'button' }
-            ]} />
+            <h3>Preferences</h3>
+            <div>
+                <label for="temperatureUnit">Temperature Unit:</label>
+                <select id="temperatureUnit" on:change={updateMeasurementMode}>
+                    <option value="metric">Metric</option>
+                    <option value="imperial">Imperial</option>
+                    <option value="kelvin">Kelvin</option>
+                </select>
+            </div>
         </div>
+        <hr>
         <div>
-            <label for="select-font">Select Font:</label>
-            <select id="select-font" on:change={selectFont}>
-                {#each fonts as font}
-                    <option value="{font}"><div style="font-family: {font};">{font}</div></option>
-                {/each}
-            </select>
+            <h3>Misc Settings</h3>
+            <button on:click={settingsRainbowMode}>
+                {$rainbowMode ? "Disable Rainbow Mode" : "Enable Rainbow Mode"}
+            </button>
         </div>
-        <div>
-            <label for="blurry-card-setting">Blur background for cards:</label>
-            <input type="checkbox" id="blurry-card-setting" on:change={changeBlurryCardMode} bind:checked={$blurryCardMode}>
-        </div>
-        {#if blurryCardMode}
-        <div>
-            <ColorPicker components={A11yVariant} label="Choose Top Background Color" bind:hex={hexTop} isDark={true} on:input={(change) => {setBackgroundBlurColor(change, true)}} a11yColors={[
-                { textHex: '#FFF', reverse: true, placeholder: 'background' },
-                { textHex: '#FFF', bgHex: '#FF0000', reverse: true, placeholder: 'background' },
-                { bgHex: '#FFF', placeholder: 'title', size: 'large' },
-                { bgHex: '#7F7F7F', placeholder: 'button' }
-            ]} />
-            <ColorPicker components={A11yVariant} label="Choose Bottom Background Color" bind:hex={hexBot} isDark={true} on:input={(change) => {setBackgroundBlurColor(change, false)}} a11yColors={[
-                { textHex: '#FFF', reverse: true, placeholder: 'background' },
-                { textHex: '#FFF', bgHex: '#FF0000', reverse: true, placeholder: 'background' },
-                { bgHex: '#FFF', placeholder: 'title', size: 'large' },
-                { bgHex: '#7F7F7F', placeholder: 'button' }
-            ]} />
-        </div>
-        {/if}
     </div>
     <div class="{`main-content ${sidebarOpen ? 'sidebar-open' : ''}`}">
         <button class="toggle-button" on:click={toggleSidebar}>
@@ -157,7 +172,7 @@
 
 <style>
     .settings-container {
-        position: absolute;
+        position: relative;
     }
     .sidebar {
         width: 200px;
@@ -174,7 +189,11 @@
     }
   
     .main-content {
-        margin-left: 0;
+        position: fixed;
+        top: 50%;
+        transform: translateY(-50%);
+        z-index: 999;
+        margin-left: 0px;
         transition: margin-left 0.3s ease-in-out;
     }
   

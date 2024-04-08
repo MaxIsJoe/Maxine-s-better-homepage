@@ -10,11 +10,9 @@
 
     backgroundImg.subscribe((value) => {
       img = value;
-      console.log(img)
     })
     textColor.subscribe((value) => {
       txtColor = value;
-      console.log(txtColor)
     })
 </script>
 
