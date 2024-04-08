@@ -2,7 +2,7 @@
     import { rainbowMode, toggleRainbowMode, toggleMeasurementMode, setBackgroundImg,
         setTextColor, setFontType, toggleCardBlurMode, textColor, 
         blurryCardMode, setblurryCardBgColorBottom, setblurryCardBgColorTop, blurryCardBgColorTop, blurryCardBgColorBot, 
-        backgroundCoverSetting, setbackgroundCoverSetting } from '$lib/stores.js';
+        backgroundCoverSetting, setbackgroundCoverSetting, disableAsciiArt } from '$lib/stores.js';
     import { onMount } from 'svelte';
     import ColorPicker, { A11yVariant } from 'svelte-awesome-color-picker';
 
@@ -168,6 +168,10 @@
                     <option value="imperial">Imperial</option>
                     <option value="kelvin">Kelvin</option>
                 </select>
+            </div>
+            <div>
+                <label for="disable-asscii">Disable ASCII:</label>
+                <input type="checkbox" id="disable-asscii" on:change={change => disableAsciiArt.update(u => !u)} bind:checked={$disableAsciiArt}>
             </div>
         </div>
         <hr>

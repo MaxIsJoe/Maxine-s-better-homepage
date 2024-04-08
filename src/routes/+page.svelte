@@ -29,14 +29,15 @@
   <title>Maxine's Better Homepage</title>
 </head>
 
-<Settings />
-<div class="grid-container" style="background-image: url({$backgroundImg}); background-size: {$backgroundCoverSetting}; color: {txtColor}; font-family: {$fontType};" class:rainbow-mode={$rainbowMode} class:rainbow-text={$rainbowMode}>
-    <div class="image grid-item"><ImageAscii /></div>
-    <div class="search-bar grid-item"><SearchBar /></div>
-    <div class="grid-item item-border" style="--card-background-color: linear-gradient({$blurryCardBgColorTop}, {$blurryCardBgColorBot})" class:blurrycard={$blurryCardMode}><WeatherCard /></div>
-    <div class="grid-item item-border" style="--card-background-color: linear-gradient({$blurryCardBgColorTop}, {$blurryCardBgColorBot})" class:blurrycard={$blurryCardMode}><Timezones /></div>
-</div>
-
+<body class="main" style="background-image: url({$backgroundImg}); background-size: {$backgroundCoverSetting}; color: {txtColor}; font-family: {$fontType};">
+  <Settings />
+  <div class="grid-container" class:rainbow-mode={$rainbowMode} class:rainbow-text={$rainbowMode}>
+      <div class="image grid-item"><ImageAscii /></div>
+      <div class="search-bar grid-item"><SearchBar /></div>
+      <div class="grid-item item-border" style="--card-background-color: linear-gradient({$blurryCardBgColorTop}, {$blurryCardBgColorBot})" class:blurrycard={$blurryCardMode}><WeatherCard /></div>
+      <div class="grid-item item-border" style="--card-background-color: linear-gradient({$blurryCardBgColorTop}, {$blurryCardBgColorBot})" class:blurrycard={$blurryCardMode}><Timezones /></div>
+  </div>
+</body>
 
 <style>
     @import url('https://fonts.googleapis.com/css2?family=Reddit+Mono:wght@200..900&display=swap');
@@ -45,8 +46,12 @@
     background-color: black;
     color: white;
     }
-    
 
+    .main{
+        min-height: 100vh;
+        min-width: 100vh;
+    }
+    
     .grid-container {
       display: grid;
       grid-template-columns: 1fr 1fr;

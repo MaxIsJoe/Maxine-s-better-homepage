@@ -3,6 +3,7 @@
   import { onMount } from "svelte";
   import { writable } from 'svelte/store';
   import { browser } from "$app/environment"
+  import { disableAsciiArt } from "$lib/stores";
 
   let asciiArt: string = "";
   const lastUploadedImage = writable<string | null>(browser && localStorage.getItem("lastUploadedImage") || "/icons/mij-icon.svg");
@@ -137,7 +138,7 @@
   }
 </style>
 
-
+{#if $disableAsciiArt == false}
 <pre>{asciiArt}</pre>
 <div class="ascii-controls">
   <input type="file" id="imageInput" accept="image/*" on:change={handleImageUpload}>
@@ -145,3 +146,4 @@
   <button on:click={() => {maxAsciiSize--; generateAscii($lastUploadedImage)}}>-</button>
   <div style="font-size: 12px;">{maxAsciiSize}px</div>
 </div>
+{/if}

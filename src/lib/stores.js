@@ -2,6 +2,7 @@ import { writable } from 'svelte/store';
 import { browser } from '$app/environment';
 
 export const rainbowMode = writable(false);
+export const disableAsciiArt = writable(false);
 export const blurryCardMode = writable(true);
 export const measurementMode = writable(browser && localStorage.getItem("measurementMode") || "metric");
 export const backgroundImg = writable(browser && localStorage.getItem("backgroundImg") || "");
