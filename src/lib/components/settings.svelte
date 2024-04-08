@@ -1,8 +1,9 @@
 <script>
     import { rainbowMode, toggleRainbowMode, toggleMeasurementMode, setBackgroundImg,
         setTextColor, setFontType, toggleCardBlurMode, textColor, 
-        blurryCardMode, setblurryCardBgColorBottom, setblurryCardBgColorTop, blurryCardBgColorTop, blurryCardBgColorBot } from '$lib/stores.js';
-    import { onMount, setContext } from 'svelte';
+        blurryCardMode, setblurryCardBgColorBottom, setblurryCardBgColorTop, blurryCardBgColorTop, blurryCardBgColorBot, 
+        backgroundCoverSetting, setbackgroundCoverSetting } from '$lib/stores.js';
+    import { onMount } from 'svelte';
     import ColorPicker, { A11yVariant } from 'svelte-awesome-color-picker';
 
     let sidebarOpen = false;
@@ -75,6 +76,7 @@
     {
         setFontType(font.target.value);
     }
+
     function changeBlurryCardMode(mode)
     {
         toggleCardBlurMode()
@@ -91,6 +93,11 @@
             setblurryCardBgColorBottom(color.detail.hex)
         }
     }
+
+    function selectBackgroundSizeSetting(setting)
+    {
+        setbackgroundCoverSetting(setting.target.value);
+    }
 </script>
 
 <div class="settings-container">
@@ -101,6 +108,14 @@
                 <label for="background-image-set">Background Image:</label>
                 <input type="file" accept="image/*" on:change={handleImageUpload}>
                 <button on:click={clearBackgroundImg}>Clear Background Image</button>
+            </div>
+            <div>
+                <label for="bg-size-control">Background Size:</label>
+                <select id="bg-size-control" bind:value={$backgroundCoverSetting} on:change={selectBackgroundSizeSetting}>
+                    <option value="cover">Cover</option>
+                    <option value="contain">Contain</option>
+                    <option value="100% 100%">100%</option>
+                </select>
             </div>
             <div>
                 <label for="blurry-card-setting">Blur background for cards:</label>

@@ -9,6 +9,7 @@ export const textColor = writable(browser && localStorage.getItem("textColor") |
 export const fontType = writable(browser && localStorage.getItem("fontType") || "Arial");
 export const blurryCardBgColorTop = writable(browser && localStorage.getItem("blurryCardBgColorTop") || "#2c121259");
 export const blurryCardBgColorBot = writable(browser && localStorage.getItem("blurryCardBgColorBot") || "#141520");
+export const backgroundCoverSetting = writable(browser && localStorage.getItem("backgroundCoverSetting") || "100% 100%");
 
 export function toggleRainbowMode() {
   rainbowMode.update(mode => !mode);
@@ -48,3 +49,7 @@ export function setblurryCardBgColorBottom(newColor) {
   browser && localStorage.setItem("blurryCardBgColorBot", newColor)
 }
 
+export function setbackgroundCoverSetting(newSetting) {
+  backgroundCoverSetting.update(() => newSetting);
+  browser && localStorage.setItem("backgroundCoverSetting", newSetting)
+}

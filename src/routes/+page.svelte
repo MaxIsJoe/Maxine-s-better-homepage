@@ -4,7 +4,9 @@
     import Timezones from '$lib/components/timezones.svelte';
     import WeatherCard from '$lib/components/weather-card.svelte';
     import Settings from '$lib/components/settings.svelte';
-    import { rainbowMode, backgroundImg, textColor, fontType, blurryCardMode, blurryCardBgColorTop, blurryCardBgColorBot } from '$lib/stores.js';
+    import { rainbowMode, backgroundImg, textColor, fontType, 
+      blurryCardMode, blurryCardBgColorTop, blurryCardBgColorBot,
+    backgroundCoverSetting } from '$lib/stores.js';
     let img = '';
     let txtColor = 'white';
 
@@ -28,7 +30,7 @@
 </head>
 
 <Settings />
-<div class="grid-container" style="background-image: url({$backgroundImg}); color: {txtColor}; font-family: {$fontType};" class:rainbow-mode={$rainbowMode} class:rainbow-text={$rainbowMode}>
+<div class="grid-container" style="background-image: url({$backgroundImg}); background-size: {$backgroundCoverSetting}; color: {txtColor}; font-family: {$fontType};" class:rainbow-mode={$rainbowMode} class:rainbow-text={$rainbowMode}>
     <div class="image grid-item"><ImageAscii /></div>
     <div class="search-bar grid-item"><SearchBar /></div>
     <div class="grid-item item-border" style="--card-background-color: linear-gradient({$blurryCardBgColorTop}, {$blurryCardBgColorBot})" class:blurrycard={$blurryCardMode}><WeatherCard /></div>
