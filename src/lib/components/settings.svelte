@@ -102,8 +102,8 @@
 
 <div class="settings-container">
     <div class="{`sidebar ${sidebarOpen ? 'open' : ''}`}">
-        <div>
-            <h3>Background Settings</h3>
+        <div class="grid-con">
+            <u><h3>Background Settings</h3></u>
             <div>
                 <label for="background-image-set">Background Image:</label>
                 <input type="file" accept="image/*" on:change={handleImageUpload}>
@@ -139,8 +139,8 @@
             {/if}
         </div>
         <hr>
-        <div>
-            <h3>Text Settings</h3>
+        <div class="grid-con">
+            <u><h3>Text Settings</h3></u>
             <div>
                 <label for="select-font">Select Font:</label>
                 <select id="select-font" on:change={selectFont}>
@@ -159,8 +159,8 @@
             </div>
         </div>
         <hr>
-        <div>
-            <h3>Preferences</h3>
+        <div class="grid-con">
+            <u><h3>Preferences</h3></u>
             <div>
                 <label for="temperatureUnit">Temperature Unit:</label>
                 <select id="temperatureUnit" on:change={updateMeasurementMode}>
@@ -175,11 +175,16 @@
             </div>
         </div>
         <hr>
-        <div>
-            <h3>Misc Settings</h3>
+        <div class="grid-con">
+            <u><h3>Misc Settings</h3></u>
             <button on:click={settingsRainbowMode}>
                 {$rainbowMode ? "Disable Rainbow Mode" : "Enable Rainbow Mode"}
             </button>
+        </div>
+        <hr>
+        <div class="grid-con">
+            <a href="https://github.com/MaxIsJoe/Maxine-s-better-homepage">Source Code</a>
+            <a href="https://maxisjoe.xyz/maxfund">Support Me</a>
         </div>
     </div>
     <div class="{`main-content ${sidebarOpen ? 'sidebar-open' : ''}`}">
@@ -192,14 +197,15 @@
 <style>
     .settings-container {
         position: relative;
+        color: white;
     }
     .sidebar {
-        width: 200px;
+        width: 225px;
         height: 100%;
         background-color: rgb(26, 26, 26);
         position: fixed;
         top: 0;
-        left: -200px;
+        left: -225px;
         transition: left 0.3s ease-in-out;
     }
   
@@ -231,6 +237,11 @@
 		--cp-bg-color: #333;
 		--cp-input-color: #555;
 		--cp-button-hover-color: #777;
+    }
+
+    .grid-con {
+        display: grid;
+        gap: 7px;
     }
 </style>
 
